@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medrunner Setup</title>
+    <style>
+        /* Das CSS sorgt für das dunkle Design und die Anordnung */
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: #0f172a; 
+            color: white; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .card { 
+            background: #1e293b; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+            width: 100%; 
+            max-width: 400px; 
+        }
+        h2 { color: #ffffff; text-align: center; margin-bottom: 25px; }
+        .field { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-size: 0.85rem; color: #ffffff; }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            background: #0f172a; 
+            border: 1px solid #333f55; 
+            border-radius: 6px; 
+            color: white; 
+            box-sizing: border-box; 
+        }
+        input:focus { border-color: #f83838; outline: none; }
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            background: #f83838; 
+            color: #2a0f0f; 
+            border: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 10px; 
+        }
+        button:disabled { background: #553333; cursor: not-allowed; }
+        
+        /* WICHTIG: Die Status-Meldung ist standardmäßig versteckt */
+        .status { 
+            text-align: center; 
+            margin-top: 20px; 
+            padding: 10px;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid #4ade80;
+            color: #4ade80;
+            border-radius: 6px;
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Medrunner API Bridge Setup</h2>
+        
+        <div class="field">
+            <label>Medrunner Refresh Token</label>
+            <input type="text" id="MEDRUNNER_TOKEN" placeholder="MRA.3/...">
+        </div>
+
+        <div class="field">
+            <label>Sinric App Key</label>
+            <input type="text" id="SINRIC_APP_KEY">
+        </div>
+
+        <div class="field">
+            <label>Sinric App Secret</label>
+            <input type="password" id="SINRIC_APP_SECRET">
+        </div>
+
+        <div class="field">
+            <label>Sinric Switch ID</label>
+            <input type="text" id="SINRIC_SWITCH_ID">
+        </div>
+
+        <button id="saveBtn" onclick="save()">Save Configuration</button>
+        
+        <div id="statusMsg" class="status">Configuration Saved! Go back to terminal.</div>
+    </div>
+
+    <script>
+        async function save() {
+            const btn = document.getElementById('saveBtn');
+            const status = document.getElementById('statusMsg');
+
+            const data = {
+                MEDRUNNER_TOKEN: document.getElementById('MEDRUNNER_TOKEN').value,
+                SINRIC_APP_KEY: document.getElementById('SINRIC_APP_KEY').value,
+                SINRIC_APP_SECRET: document.getElementById('SINRIC_APP_SECRET').value,
+                SINRIC_SWITCH_ID: document.getElementById('SINRIC_SWITCH_ID').value
+            };
+
+            // Prüfen, ob Felder leer sind
+            if (!data.MEDRUNNER_TOKEN || !data.SINRIC_APP_KEY) {
+                alert("Fill out all required fields!");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = 'Saving...';
+
+            try {
+                const res = await fetch('/save-config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    status.style.display = 'block';
+                    btn.innerText = 'Saved successfully!';
+                }
+                
+            } catch (e) {
+                alert("Fehler beim Senden!");
+                btn.disabled = false;
+                btn.innerText = 'Save Configuration';
+            }
+        }
+    </script>
+</body>
+</html>
