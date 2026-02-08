@@ -1,0 +1,73 @@
+# 📡 Medrunner API Bridge
+
+![Status](https://img.shields.io/badge/Status-Ready-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-ISC-blue?style=for-the-badge)
+![Node](https://img.shields.io/badge/Node.js-v18+-green?style=for-the-badge)
+
+Connect **Medrunner emergencies** directly to your Smart Home. Trigger lights, sirens, or automations via **Sinric Pro** (Google Home / Alexa) whenever a new emergency call is received.
+
+---
+
+## 📋 Prerequisites
+
+Before setting up, ensure you have these ready:
+
+* **Node.js**: [Download & Install](https://nodejs.org/) (LTS version recommended).
+* **Sinric Pro Account**: [Sign up for free](https://sinric.pro).
+* **Medrunner Token**: Get your **Refresh Token** from your Medrunner Staff Portal API settings.
+
+---
+
+## 🛠️ Step 1: Sinric Pro Configuration
+
+1.  **Create Device**: In your Sinric Dashboard, add a new device of type **Switch**.
+2.  **Naming**: Name it something recognizable (e.g., `Emergency Alarm`).
+3.  **Get Credentials**: Open the device details and copy these three values:
+    * `App Key`
+    * `App Secret`
+    * `Switch ID` (Device ID)
+
+---
+
+## ⚙️ Step 2: Installation & Launch (The Easy Way)
+
+No coding skills or terminal commands are required! 
+
+1.  **Download** this project and extract the folder.
+2.  **Run the Starter**: Double-click the **`start.bat`** file.
+    * *The first time you run it, it will automatically download all necessary components. This may take a minute.*
+3.  **Web Setup**: If the system isn't configured yet, it will ask you to visit [http://localhost:3000](http://localhost:3000) in your browser.
+4.  **Configure**: Enter your Medrunner and Sinric credentials into the web form and click **Save**.
+
+The system will now automatically listen for emergencies and trigger your switch!
+
+---
+
+## 📡 Usage & Logs
+
+Keep the terminal window open to see live updates:
+
+* `✅ SUCCESS`: Connected to Medrunner and Sinric Pro.
+* `🚨 ALARM`: A new emergency was detected! Your Sinric Switch is now **ON**.
+
+---
+
+## ❓ Troubleshooting
+
+| Issue | Solution |
+| :--- | :--- |
+| **Port 3000 busy** | Another program is using the setup port. Close other windows or restart your PC. |
+| **Invalid Token** | Ensure no spaces are included when pasting your Medrunner refresh token. |
+| **No reaction** | Double-check if the `App Secret` and `Switch ID` match your Sinric Dashboard exactly. |
+| **Start.bat fails** | Ensure Node.js is installed. If it still fails, try running `npm install` manually. |
+
+> **Pro Tip:** To reset your settings or change your keys, simply delete the `.env` file in the project folder and run `start.bat` again.
+
+---
+
+## ⚖️ License
+
+Distributed under the **ISC License**. Free to use, modify, and share for the Medrunner community.
+
+---
+*Developed for the Medrunner Community.*

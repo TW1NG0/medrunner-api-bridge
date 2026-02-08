@@ -16,35 +16,16 @@ console.log("┏┳┓┏━┓╺┳┓┏━╸   ┏┓ ╻ ╻   ╺┳╸�
 console.log("┃┃┃┣━┫ ┃┃┣╸    ┣┻┓┗┳┛    ┃ ┃╻┃┃┃┗┫┃╺┓┃ ┃");
 console.log("╹ ╹╹ ╹╺┻┛┗━╸   ┗━┛ ╹     ╹ ┗┻┛╹╹ ╹┗━┛┗━┛");
 console.log("");
+console.log("Version: 0.1.2");
+console.log("");
 
+//start medrunner api bridge client
 async function startApp() {
 
-    // 1. Erst Setup prüfen. Wenn .env fehlt, stoppt das Programm hier im Webserver-Modus.
-    await ensureConfig();
+  await ensureConfig();
+  dotenv.config();
 
-    dotenv.config();
-
-// 1. SETUP-CHECK (Muss ganz oben stehen!)
-if (!fs.existsSync('.env')) {
-  console.log('⚠️ Keine .env Konfigurationsdatei gefunden!');
-  console.log('Starte Setup-Assistent...\n');
-
-  try {
-    // Führt die setup.ts aus und wartet auf Fertigstellung
-    execSync('ts-node setup.ts', { stdio: 'inherit' });
-    console.log('\n✅ Setup abgeschlossen.\n');
-  } 
-
-  catch (error) {
-    console.error('Setup abgebrochen oder Fehler:', error);
-    process.exit(1);
-  }
-}
-
-// 2. DOTENV LADEN (Nachdem sichergestellt ist, dass die Datei existiert)
-dotenv.config();
-
-// 3. VALIDIERUNG (Checken, ob alle Werte drinstehen)
+// validate variables
 const required = ['MEDRUNNER_TOKEN', 'SINRIC_APP_KEY', 'SINRIC_APP_SECRET', 'SINRIC_SWITCH_ID'];
 for (const key of required) {
   if (!process.env[key]) {
@@ -53,11 +34,10 @@ for (const key of required) {
   }
 }
 
-// Variablen aus der .env laden
-
-//Medrunner API
+//Medrunner API consts
 const apiConfig = {refreshToken: process.env.MEDRUNNER_TOKEN,};
-//Sionric Pro
+
+//Sionric Pro consts
 const APP_KEY = process.env.SINRIC_APP_KEY;
 const APP_SECRET = process.env.SINRIC_APP_SECRET;
 const SWITCH_ID = process.env.SINRIC_SWITCH_ID;
@@ -67,48 +47,56 @@ const api = MedrunnerApiClient.buildClient(apiConfig);
 const ws = await api.websocket.initialize();
 await ws.start();
 console.log("--------------------------");
-console.log(" Medrunner API:", ws.state); // HubConnectionState.Connected
+console.log(" Medrunner API:", ws.state); 
 console.log("--------------------------");
-
-
-
 
 //init Sinric
 const sinricpro = new SinricPro();
 const mySwitch = new SinricProSwitch(SWITCH_ID);
 sinricpro.add(mySwitch);
 
-//Schalter Funktion
+//alarm switch function
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
 async function pulsTrigger() {
-  log('Alarm-Status ist aktiviert', 'ALARM');
-  await mySwitch.sendPowerStateEvent(true);  // Schalter AN
-  
-  setTimeout(async () => {
-    await mySwitch.sendPowerStateEvent(false); // Schalter AUS (Reset für nächstes Mal)
-    log('Alarm-Status ist deaktiviert.', 'INFO');
-  }, 120000);
+  try {
+    log('Alert-state active', 'ALARM');
+    await mySwitch.sendPowerStateEvent(true);
+    
+    await delay(120000); // Wartet sauber 2 Minuten
+    
+    await mySwitch.sendPowerStateEvent(false);
+    log('Alert-state off', 'INFO');
+  } catch (err: any) {
+    log('Error: ' + err.message, 'ERROR');
+  }
 }
 
-//Verbinden mit Sinric Pro und starte die Anwendung
+//connect to sinric pro
 sinricpro.onConnected(() => {
   console.log("-----------------------");
   console.log(" Sinric Pro: Connected");
   console.log("-----------------------");
 });
 
+//auth sinric pro and begin listening on Medrunner websocket
 await sinricpro.begin({ appKey: APP_KEY, appSecret: APP_SECRET });
 mySwitch.sendPowerStateEvent(false);
 log("Application started successfully! Listening for events...", 'SUCCESS');
 
 //Medrunner Websocket Events
+
+//reconnecting success
 ws.onreconnected(async () => {
   log("Reconnected to the WebSocket", 'SUCCESS');
 });
+
+//connection lost warn
 ws.onclose(async () => {
   log("Connection has been lost", 'WARN');
 });
 
-//Emergency created event listener
+//Emergency created
 ws.on("EmergencyCreate", () => {
   log("Emergency recieved from Medrunner API", 'INFO');
   pulsTrigger();
