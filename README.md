@@ -48,11 +48,17 @@ The system will now automatically listen for emergencies and trigger your switch
 Keep the terminal window open to see live updates or make changes:
 
 test           - simulate alert-event
+
 stop           - stop current alert-event
+
 status         - shows API and websocket status
+
 version        - shows Medrunner API Bridge version
+
 setup          - setup to change tokens / device
+
 clear          - clears the terminal feed
+
 exit           - close Medrunner API Bridge
 
 ---
