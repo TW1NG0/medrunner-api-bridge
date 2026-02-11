@@ -29,19 +29,12 @@ Before setting up, ensure you have these ready:
 
 ---
 
-<<<<<<< HEAD
-## ⚙️ Step 2: Installation & Launch (The Easy Way)
+## ⚙️ Step 2: Installation & Launch
 
 No coding skills or terminal commands are required! 
 
 1.  **Download** this project and extract the folder.
-2.  **Run the Starter**: Double-click the **`start.bat`** file.
-=======
-## ⚙️ Step 2: Installation & Launch
-
-1.  **Download** this project and extract the folder.
 2.  **Double-click** the **`start.bat`** file.
->>>>>>> a144f61c9bd33fe94d096367d337803b413e475d
     * *The first time you run it, it will automatically download all necessary components. This may take a minute.*
 3.  **Web Setup**: If the system isn't configured yet, it will ask you to visit [http://localhost:3000](http://localhost:3000) in your browser.
 4.  **Configure**: Enter your Medrunner and Sinric credentials into the web form and click **Save**.
@@ -52,14 +45,15 @@ The system will now automatically listen for emergencies and trigger your switch
 
 ## 📡 Usage & Logs
 
-<<<<<<< HEAD
-Keep the terminal window open to see live updates:
+Keep the terminal window open to see live updates or make changes:
 
-* `✅ SUCCESS`: Connected to Medrunner and Sinric Pro.
-* `🚨 ALARM`: A new emergency was detected! Your Sinric Switch is now **ON**.
-=======
-Keep the terminal window open in order for it to work and see live updates in the console.
->>>>>>> a144f61c9bd33fe94d096367d337803b413e475d
+test           - simulate alert-event
+stop           - stop current alert-event
+status         - shows API and websocket status
+version        - shows Medrunner API Bridge version
+setup          - setup to change tokens / device
+clear          - clears the terminal feed
+exit           - close Medrunner API Bridge
 
 ---
 
@@ -81,8 +75,4 @@ Keep the terminal window open in order for it to work and see live updates in th
 Distributed under the **ISC License**. Free to use, modify, and share for the Medrunner community.
 
 ---
-<<<<<<< HEAD
 *Developed for the Medrunner Community.*
-=======
-*Developed for the Medrunner Community.*
->>>>>>> a144f61c9bd33fe94d096367d337803b413e475d
