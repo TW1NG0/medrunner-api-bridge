@@ -20,6 +20,8 @@ Before setting up, ensure you have these ready:
 
 ## Step 1: Sinric Pro Configuration
 
+[Detailed Guide](https://github.com/TW1NG0/medrunner-api-bridge/wiki/How-to-setup-your-Sinric-Pro-device)
+
 1.  **Create Device**: In your Sinric Dashboard, add a new device of type **Switch**.
 2.  **Naming**: Name it something recognizable (e.g., `Emergency Alarm`).
 3.  **Get Credentials**: Open the device details and copy these three values:
@@ -31,6 +33,8 @@ Before setting up, ensure you have these ready:
 
 ## Step 2: Get your Medrunner API Token
 
+[Detailed Guide](https://github.com/TW1NG0/medrunner-api-bridge/wiki/Where-to-find-your-Medrunner-API-Token)
+
 1.  Head into the **Staffportal**.
 2.  Click on the **Profile Icon** in the top right and find the section called "API TOKENS".
 3.  Click **Create Token +**, name it whatever you want (and dont set an expiration date if you wish to keep using the Bridge) and copy the Token.
@@ -38,6 +42,8 @@ Before setting up, ensure you have these ready:
 ---
 
 ## Step 3: Installation & Launch
+
+[Detailed Guide](https://github.com/TW1NG0/medrunner-api-bridge/wiki/How-to-setup-Medrunner-API-Bridge)
 
 No coding skills or terminal commands are required! 
 
@@ -55,23 +61,25 @@ The system will now automatically listen for emergencies and trigger your switch
 
 Keep the terminal window open to see live updates or make changes:
 
-test           - simulate alert-event
+- test           - simulate alert-event
 
-stop           - stop current alert-event
+- stop           - stop current alert-event
 
-status         - shows API and websocket status
+- status         - shows API and websocket status
 
-version        - shows Medrunner API Bridge version
+- version        - shows Medrunner API Bridge version
 
-setup          - setup to change tokens / device
+- setup          - setup to change tokens / device
 
-clear          - clears the terminal feed
+- clear          - clears the terminal feed
 
-exit           - close Medrunner API Bridge
+- exit           - close Medrunner API Bridge
 
 ---
 
 ## ❓ Troubleshooting
+
+### Check the [WIKI](https://github.com/TW1NG0/medrunner-api-bridge/wiki) for detailed guides on how to setup the Medrunner API Bridge
 
 | Issue | Solution |
 | :--- | :--- |
