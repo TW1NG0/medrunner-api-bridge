@@ -8,17 +8,17 @@ Connect **Medrunner emergencies** directly to your Smart Home. Trigger lights, s
 
 ---
 
-## 📋 Prerequisites
+## Requierments
 
 Before setting up, ensure you have these ready:
 
 * **Node.js**: [Download & Install](https://nodejs.org/) (LTS version recommended).
 * **Sinric Pro Account**: [Sign up for free](https://sinric.pro).
-* **Medrunner Token**: Get your **Refresh Token** from your Medrunner Staff Portal API settings.
+* Have access to the **Medrunner Staff Portal**.
 
 ---
 
-## 🛠️ Step 1: Sinric Pro Configuration
+## Step 1: Sinric Pro Configuration
 
 1.  **Create Device**: In your Sinric Dashboard, add a new device of type **Switch**.
 2.  **Naming**: Name it something recognizable (e.g., `Emergency Alarm`).
@@ -29,7 +29,15 @@ Before setting up, ensure you have these ready:
 
 ---
 
-## ⚙️ Step 2: Installation & Launch
+## Step 2: Get your Medrunner API Token
+
+1.  Head into the **Staffportal**.
+2.  Click on the **Profile Icon** in the top right and find the section called "API TOKENS".
+3.  Click **Create Token +**, name it whatever you want (and dont set an expiration date if you wish to keep using the Bridge) and copy the Token.
+
+---
+
+## Step 3: Installation & Launch
 
 No coding skills or terminal commands are required! 
 
