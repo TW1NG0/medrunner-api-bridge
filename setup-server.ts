@@ -3,11 +3,16 @@ import * as fs from 'fs';
 import { log } from './logger.ts';
 
 
-export async function ensureConfig() {
+export async function ensureConfig(force = false) {
     const ENV_PATH = '.env';
 
     //check for existing .env
-    if (fs.existsSync(ENV_PATH)) return;
+    if (!force && fs.existsSync(ENV_PATH)) return;
+
+    // Falls erzwungen wird, informieren wir den User
+    if (force) {
+        log("Re-configuration triggered via terminal...", 'WARN');
+    }
 
     //build server
     const app = express();

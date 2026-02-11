@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-export type LogType = 'INFO' | 'WARN' | 'ERROR' | 'ALARM' | 'SUCCESS';
+export type LogType = 'INFO' | 'WARN' | 'ERROR' | 'ALERT' | 'SUCCESS';
 
 export function log(message: string, type: LogType = 'INFO') {
 
@@ -18,7 +18,7 @@ export function log(message: string, type: LogType = 'INFO') {
         INFO: chalk.blue('INFO'),
         WARN: chalk.yellow('WARN'),
         ERROR: chalk.red.bold('ERR'),
-        ALARM: chalk.magenta.bold('ALARM'),
+        ALERT: chalk.hex('#aa0000').bold('ALERT'),
         SUCCESS: chalk.green('SUCCESS')
     };
 
