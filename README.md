@@ -80,5 +80,7 @@ exit           - close Medrunner API Bridge
 
 Distributed under the **ISC License**. Free to use, modify, and share for the Medrunner community.
 
+Disclaimer: AI has been used to write some of the code in this repository.
+
 ---
 *Developed for the Medrunner Community.*
