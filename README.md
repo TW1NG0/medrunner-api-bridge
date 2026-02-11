@@ -55,6 +55,8 @@ No coding skills or terminal commands are required!
 
 The system will now automatically listen for emergencies and trigger your switch!
 
+[Here](https://github.com/TW1NG0/medrunner-api-bridge/wiki/How-to-control-smart-home-devices-with-Medrunner%E2%80%90API%E2%80%90Bridge) you can learn how to connect the Medrunner-API-Bridge to Smarthome and more!
+
 ---
 
 ## 📡 Usage & Logs
