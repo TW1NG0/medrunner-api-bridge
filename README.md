@@ -1,4 +1,4 @@
-# 📡 Medrunner API Bridge
+# 📡 Medrunner API Bridge - v0.2.1
 
 ![Status](https://img.shields.io/badge/Status-Ready-success?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-ISC-blue?style=for-the-badge)
