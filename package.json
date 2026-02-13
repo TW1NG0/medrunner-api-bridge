@@ -1,6 +1,6 @@
 {
   "name": "medrunner",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "",
   "main": "sinric.js",
   "type": "module",
@@ -8,7 +8,7 @@
     "medrunner": "bin/get-token.js"
   },
   "scripts": {
-    "start": "ts-node listener.ts"
+    "start": "node listener.ts"
   },
   "keywords": [],
   "author": "",
