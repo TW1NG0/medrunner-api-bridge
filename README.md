@@ -12,9 +12,10 @@ Connect **Medrunner emergencies** directly to your Smart Home. Trigger lights, s
 
 Before setting up, ensure you have these ready:
 
-* **Node.js**: [Download & Install](https://nodejs.org/) (LTS version recommended).
-* **Sinric Pro Account**: [Sign up for free](https://sinric.pro).
-* Have access to the **Medrunner Staff Portal**.
+* **Node.js**: [Download & Install](https://nodejs.org/) (LTS version recommended)
+* **FFmpeg**: [Download & Install](https://www.ffmpeg.org/download.html)
+* **Sinric Pro Account**: [Sign up for free](https://sinric.pro)
+* Have access to the **Medrunner Staff Portal**
 
 ---
 
